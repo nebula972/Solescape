@@ -3,7 +3,7 @@
 	--color-primary: #552583;
 	--color-secondary: #f5f5f5;
 	--color-tertiary: #9c31aa;
-    --color-quaternary: #56258379;
+  --color-quaternary: #56258379;
 	--font-family-main: 'Montserrat', sans-serif;
 	--font-family-secondary: 'Open Sans', sans-serif;
 	--font-size-base: 22px;
@@ -21,15 +21,18 @@
 }
 
 html, body{
-    font-family: var(--font-family-main);
+  font-family: var(--font-family-main);
 	font-size: var(--font-size-base);
 	background-color: var(--color-secondary);
 }
 
 /*couleur des paragraphes*/
 p{
-    color: black;
+  color: black;
 }
+
+
+
 /* Header styles */
 /* Header container */
 header {
@@ -56,7 +59,7 @@ header {
 	color: var(--color-primary);
 }
 
-/* Header navigation */
+/* Page header.html */
 .header-nav{
 	display: flex;
 	align-items: center;
@@ -124,7 +127,7 @@ header {
 
 /* positionne la loupe dans la barre de recherche */
 .Search svg{
-    position: absolute;
+  position: absolute;
 	margin-left: 340px;
 	width: 30px;
 	height: 30px;
@@ -136,48 +139,84 @@ header {
 	font-weight: bold;
 	color: black;
 }
+/* Fin Page header.html*/
 
+
+
+/* Page Index.php */
+
+/*Banner*/
+.banner-container{
+border: #552583 1px solid;
+display: flex;
+height: 45vh;
+width: 70%;
+margin: 0 auto;
+}
+
+.banner{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+
+/* Afficchage des produits */
+
+/*Parametre grille*/
+.gallery{
+  margin: 100px auto 100px;
+  padding: 0 20px;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-gap: 15px;
+  justify-content: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+/*Parametre case dans la grille*/
+.item{
+  height: 300px;
+  color : #f1f1f1;
+  padding : 20px;
+  border : 1px solid var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.snk-minia{
+  width: 100%;
+  object-fit: contain;
+  object-position: top;
+  margin-bottom: 10px;
+}
+
+.snk-name, .snk-price{
+  margin: 0;
+}
+
+/* Fin Page Index.php */
+
+
+
+/*Page CVG.php*/
 .container-CVG{
 	position: relative;
 	padding: 5vh 2vw; ;
 }
 
-/* Afficchage des produits */
-.gallery{
-    margin: 100px auto 100px;
-    padding: 0 20px;
-    max-width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    grid-gap: 15px;
-    justify-content: center;
-}
-
-.item{
-    height: 250px;
-    color : #f1f1f1;
-    padding : 20px;
-    border : 1px solid var(--color-primary);
-}
+/*Fin Page CVG.php*/
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Footer styles */
+/* Page Footer.html */
 .site-footer
 {
   background-color: var(--color-quaternary);
@@ -341,3 +380,5 @@ header {
     font-weight:600
   }
 }
+
+/* Fin Page Footer.html */
