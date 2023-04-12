@@ -147,23 +147,22 @@ header {
 
 /*Banner*/
 .banner-container{
-border: #552583 1px solid;
 display: flex;
 height: 45vh;
-width: 70%;
+width: 75vw;
 margin: 0 auto;
 }
 
 .banner{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 45vh;
+  width: 75vw;
+  object-fit: contain;
   object-position: center;
 }
 
 
 
-/* Afficchage des produits */
+/* Affichage des produits */
 
 /*Parametre grille*/
 .gallery{
