@@ -1,20 +1,37 @@
 <?php
+    session_start();
+    
+    // Vérifie que l'ID est présent dans l'URL
+    if (!isset($_GET['id'])) {
+        // Si l'ID n'est pas présent, redirige l'utilisateur vers la page d'accueil
+        header("Location: index.php");
+        exit();
+    }
+    
+    // Récupère l'ID de la sneaker depuis l'URL
+    $sneaker_id = $_GET['id'];
+    
+    // Stocke l'ID dans une variable de session
+    $_SESSION['sneaker_id'] = $sneaker_id;
+
     /*connexion à la base de données*/
     $db = new PDO('mysql:host=localhost;dbname=Solescape;charset=utf8', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-    /*récupération des données de la sneaker*/
-    $sneaker_id = $_GET['id']; //récupération de l'id de la sneaker depuis l'URL
-    $sql = "SELECT Model, Brand, Price, Picture FROM Sneakers WHERE id=:id";
+    // Requête pour récupérer les données de la table Sneakers
+    $sql = "SELECT Model, Brand, Price, Picture, Description, Filepath, id FROM Sneakers WHERE id = :id";
+
+    // exécute la requête pour récupérer les données de la sneaker
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':id', $sneaker_id, PDO::PARAM_INT);
+    $stmt->bindParam(':id', $sneaker_id);
     $stmt->execute();
     $sneaker = $stmt->fetch();
 
     /*définition du titre de la page*/
-    $title = $sneaker['Brand'] . ' ' . $sneaker['Model'];
+    $title = $sneaker['Brand'] . $sneaker['Model'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,21 +40,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="icon" href="../assets/image_st/Logo_Solescape.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="icon" href="assets/image_st/Logo_Solescape.png" type="image/png" sizes="16x16">
+    <script src="function.js"></script>
 </head>
 <body>
     <!-- header -->
     <?php 
-        include 'header_2.html';
+        include 'header.html';
     ?>
     <!-- end header -->
 
     <!-- contenu de la page -->
+    <section>
+        <!-- affiche les info de la sneaker -->
+            <?php 
+                echo '<div class="snk-choice">';
+                echo '<img id="snk-big" src="' . $sneaker['Picture'] . '" alt="' . $sneaker['Model'] . '">';
+                echo '<div class="snk-info">';
+                echo '<h3 id="snk-name">' . $sneaker['Brand'] . ' ' . $sneaker['Model'] . '</h3>';
+                echo '<p id="snk-price">' . $sneaker['Price'] . ' €</p>';
+                echo '</div>';
+                echo '<div class="snk-snk-but">';
+                echo '<button id="add-to-cart" data-id="' . $sneaker['id'] . '">Ajouter au panier</button>';
+                echo '<button id="add-to-fav" data-id="' . $sneaker['id'] . '">Ajouter aux favoris</button>';
+                echo '<p id="snk-desc">' . $sneaker['Description'] . '</p>';
+                echo '</div>';
+
+                // affiche toutes les photos du dossier
+                $dir = $sneaker['Filepath'];
+                $files = scandir($dir);
+                foreach ($files as $file) {
+                    if ($file != '.' && $file != '..') {
+                        echo '<img src="' . $dir . '/' . $file . '" alt="' . $sneaker['Model'] . '">';
+                    }
+                }
+                echo '</div>';
+            ?>
+            <script>
+                // Récupération des boutons
+                const addToCartButton = document.getElementById('add-to-cart');
+                const addToFavoritesButton = document.getElementById('add-to-fav');
+
+                // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter au panier"
+                addToCartButton.addEventListener('click', (event) => {
+                    const sneakerId = event.target.dataset.id;
+                    // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter au panier
+                    alert(`Ajout de la sneaker avec l'ID ${sneakerId} au panier`);
+                });
+
+                // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter aux favoris"
+                addToFavoritesButton.addEventListener('click', (event) => {
+                    const sneakerId = event.target.dataset.id;
+                    // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter aux favoris
+                    alert(`Ajout de la sneaker avec l'ID ${sneakerId} aux favoris`);
+                });
+            </script>
+
+    </section>
 
     <!-- fin contenu de la page -->
 
     <!-- footer -->
     <?php 
-        include 'footer_2.html';
+        include 'footer.html';
     ?>
+    <!-- end header -->
+
+
+
+</body>
