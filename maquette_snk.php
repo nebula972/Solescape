@@ -107,7 +107,7 @@
                 });
 
                 // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter aux favoris"
-                addToFavoritesButton.addEventListener('click', (event) => {
+                addToFavoritesButton.addEventListener('click', (event) => {t
                     const sneakerId = event.target.dataset.id;
                     // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter aux favoris
                     alert(`Ajout de la sneaker avec l'ID ${sneakerId} aux favoris`);
