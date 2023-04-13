@@ -42,7 +42,6 @@
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="icon" href="assets/image_st/Logo_Solescape.png" type="image/png" sizes="16x16">
-    <script src="function.js"></script>
 </head>
 <body>
     <!-- header -->
@@ -61,6 +60,24 @@
                 echo '<h3 id="snk-name">' . $sneaker['Brand'] . ' ' . $sneaker['Model'] . '</h3>';
                 echo '<p id="snk-price">' . $sneaker['Price'] . ' €</p>';
                 echo '</div>';
+                echo '<label for="size">Sélectionnez votre pointure :</label>';
+                        echo '<select id="size" name="size">';
+                        echo '<option value="35">35</option>';
+                        echo '<option value="36">36</option>';
+                        echo '<option value="37">37</option>';
+                        echo '<option value="38">38</option>';
+                        echo '<option value="39">39</option>';
+                        echo '<option value="40">40</option>';
+                        echo '<option value="41">41</option>';
+                        echo '<option value="42">42</option>';
+                        echo '<option value="43">43</option>';
+                        echo '<option value="44">44</option>';
+                        echo '<option value="45">45</option>';
+                        echo '<option value="46">46</option>';
+                        echo '<option value="47">47</option>';
+                        echo 'option value="48">48</option>';
+                        echo '</select>';
+                echo '<button onclick="afficherSelection()">Afficher la sélection</button>';
                 echo '<div class="snk-snk-but">';
                 echo '<button id="add-to-cart" data-id="' . $sneaker['id'] . '">Ajouter au panier</button>';
                 echo '<button id="add-to-fav" data-id="' . $sneaker['id'] . '">Ajouter aux favoris</button>';
@@ -95,6 +112,13 @@
                     // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter aux favoris
                     alert(`Ajout de la sneaker avec l'ID ${sneakerId} aux favoris`);
                 });
+            </script>
+            <script>
+                function afficherSelection() {
+                    var select = document.getElementById("size");
+                    var valeurSelectionnee = select.options[select.selectedIndex].value;
+                    alert("La taille sélectionnée est : " + valeurSelectionnee);
+                }
             </script>
 
     </section>
