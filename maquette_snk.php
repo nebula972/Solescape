@@ -104,23 +104,23 @@
                     const sneakerId = event.target.dataset.id;
                     // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter au panier
                     alert(`Ajout de la sneaker avec l'ID ${sneakerId} au panier`);
+                    afficherSelection();
                 });
 
                 // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter aux favoris"
-                addToFavoritesButton.addEventListener('click', (event) => {t
+                addToFavoritesButton.addEventListener('click', (event) => {
                     const sneakerId = event.target.dataset.id;
                     // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter aux favoris
                     alert(`Ajout de la sneaker avec l'ID ${sneakerId} aux favoris`);
+                    afficherSelection();
                 });
-            </script>
-            <script>
+                // Fonction pour afficher la size sélectionnée dans la liste déroulante
                 function afficherSelection() {
                     var select = document.getElementById("size");
                     var valeurSelectionnee = select.options[select.selectedIndex].value;
                     alert("La taille sélectionnée est : " + valeurSelectionnee);
                 }
             </script>
-
     </section>
 
     <!-- fin contenu de la page -->
@@ -130,7 +130,5 @@
         include 'footer.html';
     ?>
     <!-- end header -->
-
-
 
 </body>
