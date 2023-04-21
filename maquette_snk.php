@@ -42,6 +42,8 @@
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="icon" href="assets/image_st/Logo_Solescape.png" type="image/png" sizes="16x16">
+    <!--import ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- header -->
@@ -120,6 +122,27 @@
                     var valeurSelectionnee = select.options[select.selectedIndex].value;
                     alert("La taille sélectionnée est : " + valeurSelectionnee);
                 }
+                //async add cart 
+                $(document).ready(function(){
+                    $('#add-to-cart').click(function(){
+                        var id = $(this).data("id");
+                        var size = $('#size').val();
+                        if(size == ''){
+                            alert("Please select size");
+                            return false;
+                        }else{
+                            $.ajax({
+                                url:"add_cart.php",
+                                method:"POST",
+                                data:{id:id, size:size},
+                                success:function(data){
+                                    alert("Product added into cart");
+                                }
+                            });
+                        }
+                    });
+                });
+
             </script>
     </section>
 
