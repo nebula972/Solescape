@@ -10,9 +10,7 @@
     
     // Récupère l'ID de la sneaker depuis l'URL
     $sneaker_id = $_GET['id'];
-    
-    // Stocke l'ID dans une variable de session
-    $_SESSION['sneaker_id'] = $sneaker_id;
+    var_dump($sneaker_id);
 
     /*connexion à la base de données*/
     $db = new PDO('mysql:host=localhost;dbname=Solescape;charset=utf8', 'root', '');

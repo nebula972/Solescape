@@ -1,11 +1,5 @@
 <?php
     session_start();
-
-    // Génère un identifiant de session unique
-    $session_id = uniqid();
-    
-    // Stocke l'identifiant de session dans une variable de session
-    $_SESSION['session_id'] = $session_id;
     
     /*connextion à la base de donnée*/
     $db = new PDO('mysql:host=localhost;dbname=Solescape;charset=utf8', 'root', '');
