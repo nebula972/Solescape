@@ -107,19 +107,13 @@
                     afficherSelection();
                 });
 
-                // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter aux favoris"
-                addToFavoritesButton.addEventListener('click', (event) => {
-                    const sneakerId = event.target.dataset.id;
-                    // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter aux favoris
-                    alert(`Ajout de la sneaker avec l'ID ${sneakerId} aux favoris`);
-                    afficherSelection();
-                });
                 // Fonction pour afficher la size sélectionnée dans la liste déroulante
                 function afficherSelection() {
                     var select = document.getElementById("size");
-                    var valeurSelectionnee = select.options[select.selectedIndex].value;
-                    alert("La taille sélectionnée est : " + valeurSelectionnee);
+                    var size = select.options[select.selectedIndex].value;
+                    alert("La taille sélectionnée est : " + size);
                 }
+
                 //async add cart 
                 $(document).ready(function(){
                     $('#add-to-cart').click(function(){
