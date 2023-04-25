@@ -9,6 +9,37 @@
     <link rel="icon" href="assets/image_st/Logo_Solescape.png" type="image/png" sizes="16x16">
 </head>
 <body>
+    <!-- header -->
+    <?php 
+        include 'header.html';
+    ?>
+    <!-- end header -->
+
+    <!-- contenu de la page -->
+    <section>
+        <div class="form-connexion">
+            <form action="connex_action.php" method="post">
+                <label for="email">Email :</label>
+                <input type="email" name="email" id="email" required>
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="password" id="password" required>
+                <input type="submit" value="Se connecter">
+                <a href="inscription.php">Pas encore inscrit ?</a>
+            </form>
+        </div>
+    </section>
+    <!-- end contenu de la page -->
+
+    <!-- footer -->
+    <?php 
+        include 'footer.html';
+    ?>
+    <!-- end footer -->
+
+    <?php
+        include 'connex_action.php';
+    ?>
+
     
 </body>
 </html>

@@ -38,7 +38,6 @@ p{
 header {
 	background-color: var(--color-secondary);
 	box-shadow: var(--box-shadow-base);
-	position: relative;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -88,7 +87,6 @@ header {
 /* Header icons */
 .header-icons ul{
 	display: flex;
-	margin-right: 40px;
 }
 
 /*retire le soulignage*/
@@ -212,6 +210,70 @@ a{
 }
 
 /*Fin Page CVG.php*/
+
+
+/* Page Connexion.php */
+/* Style général de la section */
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-secondary);
+}
+
+/* Style du formulaire */
+.form-connexion {
+  background-color: var(--color-secondary);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  border-radius: 5px;
+}
+
+/* Style des labels */
+.form-connexion label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style des inputs */
+.form-connexion input[type="email"],
+.form-connexion input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style du bouton de connexion */
+.form-connexion input[type="submit"] {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style du lien pour s'inscrire */
+.form-connexion a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #0066CC;
+  text-decoration: none;
+}
+/* Fin Page Connexion.php */
 
 
 
