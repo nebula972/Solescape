@@ -16,7 +16,7 @@
     <!-- end header -->
 
     <!-- contenu de la page -->
-    <section>
+    <section class="container-login">
         <div class="form-connexion">
             <form action="connex_action.php" method="post">
                 <label for="email">Email :</label>

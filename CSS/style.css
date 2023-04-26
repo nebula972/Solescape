@@ -3,7 +3,7 @@
 	--color-primary: #552583;
 	--color-secondary: #f5f5f5;
 	--color-tertiary: #9c31aa;
-  --color-quaternary: #56258379;
+  --color-quaternary: #8568a079;
 	--font-family-main: 'Montserrat', sans-serif;
 	--font-family-secondary: 'Open Sans', sans-serif;
 	--font-size-base: 22px;
@@ -219,49 +219,47 @@ a{
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: var(--color-secondary);
 }
 
 /* Style du formulaire */
 .form-connexion {
-  background-color: var(--color-secondary);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
 /* Style des labels */
 .form-connexion label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* Style des inputs */
 .form-connexion input[type="email"],
 .form-connexion input[type="password"] {
-  width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border-radius: 5px;
+  width: 100%;
   border: none;
+  border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  color: #333;
 }
 
 /* Style du bouton de connexion */
 .form-connexion input[type="submit"] {
-  width: 100%;
   background-color: var(--color-primary);
-  color: #FFF;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 16px;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1.2rem;
+}
+.form-connexion input[type="submit"]:hover {
+  background-color: var(--color-tertiary);
 }
 
 /* Style du lien pour s'inscrire */
@@ -275,7 +273,64 @@ a{
 }
 /* Fin Page Connexion.php */
 
+/* Styles pour le formulaire d'inscription */
+.container-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+/* Style du formulaire */
+.form-register {
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* Style des labels */
+.form-register label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Style des inputs */
+.form-register input[type="email"],
+.form-register input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style du bouton de connexion */
+.form-register input[type="submit"] {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.form-register input[type="submit"]:hover {
+  background-color: var(--color-tertiary);
+}
+
+/* Style du lien pour connecter */
+.form-register a {
+  font-size: 0.8rem;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Fin Page inscription.php*/
 
 /* Page Footer.html */
 .site-footer

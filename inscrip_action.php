@@ -1,7 +1,7 @@
 <!-- php pour l'inscription -->
 <?php
 
-    include 'bdd.php';
+    include 'bdd_log.php';
 
     //connexion à la base de données
     $db = new PDO('mysql:host=localhost;dbname=solescape;charset=utf8', 'root', '');
