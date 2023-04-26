@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include 'bdd_log.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,7 @@
     <!-- contenu de la page -->
     <section class="container-register">
         <div class="form-register">
-            <form action="inscription.php" method="post">
+            <form action="inscrip_action.php" method="post">
                 <label for="email">Email :</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Mot de passe :</label>

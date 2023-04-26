@@ -26,7 +26,10 @@
             $stmt->execute();
             $customer = $stmt->fetch();
             if($customer){
-                echo 'Cet email est déjà utilisé';
+                echo '<script type="text/javascript">';
+                echo 'alert("Cette e-mail est déja utiliser");';
+                echo 'window.location.href = "inscription.php";';
+            echo '</script>';
             }else{
                 //insère les données dans la table customer
                 $sql = "INSERT INTO customer (E_mail, Pwd) VALUES (:email, :password)";
@@ -34,10 +37,13 @@
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $password);
                 $stmt->execute();
-                echo 'Inscription réussie !';
+                header('Location: Compte.php');
             }
         }else{
-            echo 'Les mots de passe ne correspondent pas';
+            echo '<script type="text/javascript">';
+                echo 'alert("les mots de passe ne correspondent pas");';
+                echo 'window.location.href = "inscription.php";';
+            echo '</script>';
         }
     }
 ?>

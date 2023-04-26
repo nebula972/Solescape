@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    include 'bdd_log.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +43,9 @@
 
     <?php
         include 'connex_action.php';
+        header('Location: connexion.php');
     ?>
+    
 
     
 </body>

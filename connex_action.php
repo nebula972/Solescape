@@ -3,7 +3,7 @@
         //si le formulaire est envoyé
         if(isset($_POST['email']) && isset($_POST['password'])){
             //récupère les données du formulaire
-            $email = htmlspecialchars($_POST['email']);
+            $email = ($_POST['email']);
             //hash le mot de passe en sha256
             $password = hash('sha256',$_POST['password']);
 
@@ -27,10 +27,18 @@
                     //redirige vers la page d'accueil
                     header('Location: index.php');
                 }else{
-                    echo 'Mot de passe incorrect';
+                    //alert js que mpd incorrect
+                    echo '<script type="text/javascript">';
+                     echo 'alert("mot de passe incorrect");';
+                     echo 'window.location.href = "connexion.php";';
+                echo '</script>';
                 }
             }else{
-                echo 'Utilisateur inexistant';
+                //alert js que l'utilisateur n'existe pas
+                echo '<script type="text/javascript">';
+                     echo 'alert("Cet utilisateur n\'existe pas");';
+                     echo 'window.location.href = "connexion.php";';
+                echo '</script>';
             }
         }
 ?>
