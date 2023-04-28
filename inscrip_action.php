@@ -1,13 +1,6 @@
-<!-- php pour l'inscription -->
 <?php
 
     include 'bdd_log.php';
-
-    //connexion à la base de données
-    $db = new PDO('mysql:host=localhost;dbname=solescape;charset=utf8', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     //si le formulaire est envoyé
     if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])){

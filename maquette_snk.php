@@ -1,5 +1,5 @@
 <?php
-    session_start();
+include 'bdd_log.php';
     
     // Vérifie que l'ID est présent dans l'URL
     if (!isset($_GET['id'])) {
@@ -10,13 +10,7 @@
     
     // Récupère l'ID de la sneaker depuis l'URL
     $sneaker_id = $_GET['id'];
-    var_dump($sneaker_id);
 
-    /*connexion à la base de données*/
-    $db = new PDO('mysql:host=localhost;dbname=Solescape;charset=utf8', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     // Requête pour récupérer les données de la table Sneakers
     $sql = "SELECT Model, Brand, Price, Picture, Description, Filepath, id FROM Sneakers WHERE id = :id";
@@ -77,10 +71,8 @@
                         echo '<option value="47">47</option>';
                         echo 'option value="48">48</option>';
                         echo '</select>';
-                echo '<button onclick="afficherSelection()">Afficher la sélection</button>';
                 echo '<div class="snk-snk-but">';
                 echo '<button id="add-to-cart" data-id="' . $sneaker['id'] . '">Ajouter au panier</button>';
-                echo '<button id="add-to-fav" data-id="' . $sneaker['id'] . '">Ajouter aux favoris</button>';
                 echo '<p id="snk-desc">' . $sneaker['Description'] . '</p>';
                 echo '</div>';
 
@@ -95,24 +87,6 @@
                 echo '</div>';
             ?>
             <script>
-                // Récupération des boutons
-                const addToCartButton = document.getElementById('add-to-cart');
-                const addToFavoritesButton = document.getElementById('add-to-fav');
-
-                // Ajout d'un écouteur d'événement sur le clic du bouton "Ajouter au panier"
-                addToCartButton.addEventListener('click', (event) => {
-                    const sneakerId = event.target.dataset.id;
-                    // Faire quelque chose avec l'ID de la sneaker, comme l'ajouter au panier
-                    alert(`Ajout de la sneaker avec l'ID ${sneakerId} au panier`);
-                    afficherSelection();
-                });
-
-                // Fonction pour afficher la size sélectionnée dans la liste déroulante
-                function afficherSelection() {
-                    var select = document.getElementById("size");
-                    var size = select.options[select.selectedIndex].value;
-                    alert("La taille sélectionnée est : " + size);
-                }
 
                 //async add cart 
                 $(document).ready(function(){

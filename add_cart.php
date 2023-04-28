@@ -1,29 +1,17 @@
 <?php
-    session_start();
-    //connexion à la base de données
-    /*connexion à la base de données*/
-    $db = new PDO('mysql:host=localhost;dbname=Solescape;charset=utf8', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    var_dump($_POST);
-    var_dump($_SESSION);
-    var_dump($_GET);
-    $id_sh = htmlspecialchars($_POST['id']);
-    $id_Customer = htmlspecialchars($_SESSION['id']);
-    $size = htmlspecialchars($_POST['size']);
-    
-    //Requête pour Inserer les données de la table Cart
-    $sql = "INSERT INTO Cart (Item_id, id_Customer, Model, size) VALUES ( :Item_id, :id_Customer, :Model, :size)";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':Item_id', $_POST['id']);
-    $stmt->bindParam(':id_Customer', $_POST['id_Customer']);
-    $stmt->bindParam(':Model', $_POST['Model']);
-    $stmt->bindParam(':size', $_POST['size']);
-    $stmt->execute();
-    $cart = $stmt->fetch();
-
-
-
-    
+include 'bdd_log.php';
+/* ajoute la sneakers au panier */
+if(isset($_SESSION['customer'])) {
+  $customer_id = $_SESSION['customer']["Id"];
+  $sneakers_id = $_POST['id'];
+  $size = $_POST['size'];
+  var_dump($_POST);
+  
+  $stmt = $db->prepare("INSERT INTO cart (Id_Customer, id_Sneakers, Size) VALUES (?, ?, ?)");
+  $stmt->execute([$customer_id, $sneakers_id, $size]);
+  
+  echo "la Sneakers a bien été ajoutée au panier";
+} else {
+   var_dump($_SESSION);
+}
 ?>
