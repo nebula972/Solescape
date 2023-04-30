@@ -30,7 +30,10 @@
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $password);
                 $stmt->execute();
-                header('Location: Compte.php');
+                //enregistre les données de l'utilisateur dans la session
+                $_SESSION['customer'] = $customer;
+                //redirige vers la page d'accueil après 3 secondes
+                header("Location: index.php");
             }
         }else{
             echo '<script type="text/javascript">';

@@ -24,7 +24,7 @@
                 //enregistre les données de l'utilisateur dans la session
                 $_SESSION['customer'] = $customer;
                 //redirige vers la page d'accueil après 3 secondes
-                header( "Refresh:2; url=Index.php", true, 303);
+                header("Location: index.php");
             }else{
                 //alert js que mpd incorrect
                 echo '<script type="text/javascript">';

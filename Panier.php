@@ -1,6 +1,10 @@
 <?php
-    session_start();
     include 'bdd_log.php';
+    session_start();
+    if(!isset($_SESSION['customer'])){
+        header('Location: connexion.php');
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>

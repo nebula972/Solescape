@@ -1,5 +1,6 @@
 <?php
 include 'bdd_log.php';
+session_start();
     
     // Vérifie que l'ID est présent dans l'URL
     if (!isset($_GET['id'])) {
@@ -47,69 +48,73 @@ include 'bdd_log.php';
     <!-- contenu de la page -->
     <section>
         <!-- affiche les info de la sneaker -->
-            <?php 
-                echo '<div class="snk-choice">';
-                echo '<img id="snk-big" src="' . $sneaker['Picture'] . '" alt="' . $sneaker['Model'] . '">';
-                echo '<div class="snk-info">';
-                echo '<h3 id="snk-name">' . $sneaker['Brand'] . ' ' . $sneaker['Model'] . '</h3>';
-                echo '<p id="snk-price">' . $sneaker['Price'] . ' €</p>';
-                echo '</div>';
-                echo '<label for="size">Sélectionnez votre pointure :</label>';
-                        echo '<select id="size" name="size">';
-                        echo '<option value="35">35</option>';
-                        echo '<option value="36">36</option>';
-                        echo '<option value="37">37</option>';
-                        echo '<option value="38">38</option>';
-                        echo '<option value="39">39</option>';
-                        echo '<option value="40">40</option>';
-                        echo '<option value="41">41</option>';
-                        echo '<option value="42">42</option>';
-                        echo '<option value="43">43</option>';
-                        echo '<option value="44">44</option>';
-                        echo '<option value="45">45</option>';
-                        echo '<option value="46">46</option>';
-                        echo '<option value="47">47</option>';
-                        echo 'option value="48">48</option>';
-                        echo '</select>';
-                echo '<div class="snk-snk-but">';
-                echo '<button id="add-to-cart" data-id="' . $sneaker['id'] . '">Ajouter au panier</button>';
-                echo '<p id="snk-desc">' . $sneaker['Description'] . '</p>';
-                echo '</div>';
-
-                // affiche toutes les photos du dossier
-                $dir = $sneaker['Filepath'];
-                $files = scandir($dir);
-                foreach ($files as $file) {
-                    if ($file != '.' && $file != '..') {
-                        echo '<img src="' . $dir . '/' . $file . '" alt="' . $sneaker['Model'] . '">';
-                    }
+        <?php 
+            echo '<div class="snk-choice">';
+            echo '<img id="snk-big" src="' . $sneaker['Picture'] . '" alt="' . $sneaker['Model'] . '">';
+            echo '<div class="snk-info">';
+            echo '<h3 id="snk-name">' . $sneaker['Brand'] . ' ' . $sneaker['Model'] . '</h3>';
+            echo '<p id="snk-price">' . $sneaker['Price'] . ' €</p>';
+            echo '</div>';
+            echo '<label for="size">Sélectionnez votre pointure :</label>';
+                echo '<select id="size" name="size">';
+                echo '<option value="35">35</option>';
+                echo '<option value="36">36</option>';
+                echo '<option value="37">37</option>';
+                echo '<option value="38">38</option>';
+                echo '<option value="39">39</option>';
+                echo '<option value="40">40</option>';
+                echo '<option value="41">41</option>';
+                echo '<option value="42">42</option>';
+                echo '<option value="43">43</option>';
+                echo '<option value="44">44</option>';
+                echo '<option value="45">45</option>';
+                echo '<option value="46">46</option>';
+                echo '<option value="47">47</option>';
+                echo 'option value="48">48</option>';
+                echo '</select>';
+            echo '<div class="snk-snk-but">';
+            echo '<button id="add-to-cart" data-id="' . $sneaker['id'] . '">Ajouter au panier</button>';
+            echo '<p id="snk-desc">' . $sneaker['Description'] . '</p>';
+            echo '</div>';
+            // affiche toutes les photos du dossier
+            $dir = $sneaker['Filepath'];
+            $files = scandir($dir);
+            foreach ($files as $file) {
+                if ($file != '.' && $file != '..') {
+                    echo '<img src="' . $dir . '/' . $file . '" alt="' . $sneaker['Model'] . '">';
                 }
-                echo '</div>';
-            ?>
-            <script>
+            }
+            echo '</div>';
+        ?>
+       <script>
+           //async add cart 
+           $(document).ready(function(){
+               $('#add-to-cart').click(function(){
+                   var id = $(this).data("id");
+                   var size = $('#size').val();
+                   if(size == ''){
+                       alert("Veuillez sélectionner une taille.");
+                       return false;
+                   }else{
+                       $.ajax({
+                           url:"add_cart.php",
+                           method:"POST",
+                           data:{id:id, size:size},
+                           success:function(data){
+                               if(data === 'success') {
+                                   alert("Le produit a été ajouté au panier.");
+                               } else {
+                                   //redirection vers la page de connexion
+                                   alert("Le produit n'a pas été ajouté au panier. Veuillez vous connecter.");
+                                   window.location.href = "connexion.php";
+                               }
+                           }
+                       });
+                   }
+               });
+           });
 
-                //async add cart 
-                $(document).ready(function(){
-                    $('#add-to-cart').click(function(){
-                        var id = $(this).data("id");
-                        var size = $('#size').val();
-                        if(size == ''){
-                            alert("Please select size");
-                            return false;
-                        }else{
-                            $.ajax({
-                                url:"add_cart.php",
-                                method:"POST",
-                                data:{id:id, size:size},
-                                success:function(data){
-                                    alert("Product added into cart");
-                                }
-                            });
-                        }
-                    });
-                });
-
-            </script>
+       </script>
     </section>
 
     <!-- fin contenu de la page -->

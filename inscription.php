@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    include 'bdd_log.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

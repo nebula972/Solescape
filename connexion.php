@@ -38,7 +38,6 @@
 
     <?php
         include 'connex_action.php';
-        header('Location: connexion.php');
     ?>
     
 

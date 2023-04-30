@@ -1,5 +1,6 @@
 <?php
     include 'bdd_log.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +19,6 @@
         include 'header.html';
     ?>
     <section class="banner-container"><img class="banner" src="assets/image_st/Banner_Solescape.png" alt=""></section>
-    <!-- end header -->
-    <!-- affichage de la grille des sneakers -->
-    <!-- recuperation dans la bdd des infos -->
     <?php
         // Requête pour récupérer les données de la table Sneakers
         $sql = "SELECT Model, Brand, Price, Picture, id FROM Sneakers";
@@ -44,7 +42,7 @@
         echo "</div>";
 
         // Fermeture de la connexion à la base de données
-        $dbh = null;
+        $db = null;
     ?>
 
     <?php 

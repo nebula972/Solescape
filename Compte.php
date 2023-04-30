@@ -1,5 +1,11 @@
 <?php
     include 'bdd_log.php';
+    session_start();
+    // si un session n'est pas ouvert, redirection vers connexion.php
+    if(!isset($_SESSION['customer'])){
+        header('Location: connexion.php');
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
