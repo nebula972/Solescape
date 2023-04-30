@@ -39,6 +39,25 @@
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Vérification s'il y a des résultats
+    if (empty($results)) {
+        echo "<p>Aucun résultat trouvé pour la recherche : " . $searchTerm . "</p>";
+    }else{
+        // Affichage des résultats dans un display grid
+        echo "<div class='gallery'>";
+        foreach ($results as $row) {
+            echo "<a href='maquette_snk.php?id=" . $row['id'] . "'>";
+            echo "<div class='item'>";
+            echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
+            echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
+            echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
+            echo "</div>";
+            echo "</a>";
+        }
+        echo "</div>";
+    }
+
+
     // Affichage des résultats dans un display grid
     echo "<div class='gallery'>";
     foreach ($results as $row) {
