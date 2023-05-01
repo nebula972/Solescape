@@ -57,19 +57,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo "</div>";
     }
 
-
-    // Affichage des résultats dans un display grid
-    echo "<div class='gallery'>";
-    foreach ($results as $row) {
-        echo "<a href='maquette_snk.php?id=" . $row['id'] . "'>";
-        echo "<div class='item'>";
-        echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
-        echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
-        echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
-        echo "</div>";
-        echo "</a>";
-    }
-
     // Fermeture de la connexion à la base de données
     $db = null;
 

@@ -100,14 +100,9 @@ session_start();
                            url:"add_cart.php",
                            method:"POST",
                            data:{id:id, size:size},
-                           success:function(data){
-                               if(data === 'success') {
-                                   alert("Le produit a été ajouté au panier.");
-                               } else {
-                                   //redirection vers la page de connexion
-                                   alert("Le produit n'a pas été ajouté au panier. Veuillez vous connecter.");
-                                   window.location.href = "connexion.php";
-                               }
+                            success:function(data){
+                                 alert("Le produit a été ajouté au panier.");
+                                 location.reload();
                            }
                        });
                    }

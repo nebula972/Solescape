@@ -332,6 +332,83 @@ a{
 
 /* Fin Page inscription.php*/
 
+/* Page Compte.php */
+/* Style pour le conteneur principal */
+.info-container {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  }
+  
+  /* Style pour le bouton de déconnexion */
+  .btn_logout {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  }
+
+  .btn_logout:hover {
+  background-color: var(--color-tertiary);
+  }
+  
+  /* Style pour le titre "Mes informations personnelles" */
+  .info_perso {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  }
+  
+  /* Style pour le formulaire */
+  .modif_in {
+  display: flex;
+  flex-wrap: wrap;
+  }
+  
+  /* Style pour les labels */
+  .label_info {
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  }
+  
+  /* Style pour les champs de saisie */
+  .info {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  }
+  
+  /* Style pour le bouton de soumission */
+  .sub_info {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  }
+
+  .sub_info:hover {
+    background-color: var(--color-tertiary);
+  }
+
+/* Fin Page Compte.php */
+
 /* Page Footer.html */
 .site-footer
 {

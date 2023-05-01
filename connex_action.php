@@ -1,4 +1,6 @@
 <?php
+session_destroy();
+
     include 'bdd_log.php';
     //si le formulaire est envoyé
     if(isset($_POST['email']) && isset($_POST['password'])){
@@ -21,9 +23,10 @@
             //vérifie si le mot de passe est correct
             if($password === $customer['Pwd']){
                 //démarre la session
+                session_start();
                 //enregistre les données de l'utilisateur dans la session
                 $_SESSION['customer'] = $customer;
-                //redirige vers la page d'accueil après 3 secondes
+                //redirige vers la page d'accueil
                 header("Location: index.php");
             }else{
                 //alert js que mpd incorrect

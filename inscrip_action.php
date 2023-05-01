@@ -1,5 +1,5 @@
 <?php
-
+    session_destroy();
     include 'bdd_log.php';
 
     //si le formulaire est envoyé
@@ -30,6 +30,8 @@
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $password);
                 $stmt->execute();
+                //crée la session
+                session_start();
                 //enregistre les données de l'utilisateur dans la session
                 $_SESSION['customer'] = $customer;
                 //redirige vers la page d'accueil après 3 secondes
