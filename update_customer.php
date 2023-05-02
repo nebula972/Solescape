@@ -12,7 +12,7 @@
     $first_name = $_POST['First_Name'];
     $last_name = $_POST['Last_Name'];
     $email = $_POST['E_mail'];
-    $password = $_POST['Pwd'];
+    $password = sha256($_POST['Pwd']);
     $street = $_POST['Street'];
     $city = $_POST['City'];
     $state = $_POST['State'];

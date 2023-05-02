@@ -23,7 +23,46 @@
         include 'header.html';
     ?>
 
+<?php
+    // Récupération de l'id du customer depuis la session
+    $customerId = $_SESSION['customer']['Id'];   
 
+    // Requête pour récupérer les sneakers dans le panier
+    $sql = "SELECT sneakers.* FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':customerId', $customerId);
+    $stmt->execute();
+    $sneakersInCart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // bouton tout selectionner
+    echo "<div class='btn-allselect'>";
+    echo "<input type='checkbox' name='allselect' value='allselect'> Tout sélectionner";
+    echo "</div>";
+    
+    // Affichage des résultats dans une grid
+    echo "<div class='gallery'>";
+    foreach ($sneakersInCart as $row) {
+        echo "<a href='maquette_snk.php?id=" . $row['id'] . "'>";
+        echo "<div class='item'>";
+        // encoche pour selectionner la sneaker
+        echo "<input type='checkbox' name='sneaker' value='" . $row['id'] . "'>";
+        echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
+        echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
+        echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
+        echo "</div>";
+        echo "</a>";
+    }
+    echo "</div>";
+    echo " <div class='btn-cart'>";
+    echo "<input type='submit' name='supp' value='Supprimer'>";
+    echo "<input type='submit' name='order' value='Commander'>";
+    echo "</div>";
+
+
+
+    // Fermeture de la connexion à la base de données
+    $db = null;
+    ?>
 
     <?php
         include 'footer.html';
