@@ -23,7 +23,7 @@
     $searchTerm = $_GET['searchTerm'];
 
     //requete SQL qui selection tout les produits qui contiennent le terme de recherche
-    $sql = "SELECT * FROM sneakers WHERE Brand LIKE ? OR Model LIKE ? OR Color LIKE ? OR Description LIKE ?";
+    $sql = "SELECT * FROM sneakers WHERE Brand LIKE ? OR Model LIKE ? OR Color LIKE ?";
 
     // Préparation de la requête
     $stmt = $db->prepare($sql);
@@ -33,7 +33,6 @@
     $stmt->bindParam(1, $search, PDO::PARAM_STR);
     $stmt->bindParam(2, $search, PDO::PARAM_STR);
     $stmt->bindParam(3, $search, PDO::PARAM_STR);
-    $stmt->bindParam(4, $search, PDO::PARAM_STR);
 
 // Exécution de la requête
 $stmt->execute();
