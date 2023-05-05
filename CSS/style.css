@@ -413,8 +413,51 @@ a{
 
 /* Style du bouton tout selectionner */
 
+input[type="checkbox"].checkbox-all {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #888;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  margin-left: 10%;
+}
+
+input[type="checkbox"].checkbox-all:checked::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 16px;
+}
 
 /* Style du bouton supprimer et commander  */
+
+.container-btn-cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.btn-cart{
+  display: flex;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  justify-content: center;
+  }
+
+  .btn-cart:hover {
+  background-color: var(--color-tertiary);
+  }
 
 /* Fin Page Panier.php */
 

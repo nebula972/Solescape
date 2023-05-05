@@ -36,7 +36,7 @@
 
     // bouton tout selectionner
     echo "<div class='btn-allselect'>";
-    echo "<input type='checkbox' name='allselect' value='allselect'> Tout sélectionner";
+    echo "<input type='checkbox' name='allselect' class='checkbox-all' value=''> Tout sélectionner";
     echo "</div>";
     
     // Affichage des résultats dans une grid
@@ -44,18 +44,18 @@
     foreach ($sneakersInCart as $row) {
         echo "<a href='maquette_snk.php?id=" . $row['id'] . "'>";
         echo "<div class='item'>";
-        // encoche pour selectionner la sneaker
-        echo "<input type='checkbox' name='sneaker' value='" . $row['id'] . "'>";
         echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
         echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
         echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
+        echo "<input type='submit' class='btn-suppr' name='suppr' value='Supprimer'>";
         echo "</div>";
         echo "</a>";
     }
     echo "</div>";
-    echo " <div class='btn-cart'>";
-    echo "<input type='submit' name='supp' value='Supprimer'>";
-    echo "<input type='submit' name='order' value='Commander'>";
+    echo " <div class='container-btn-cart'>";
+    echo "<input type='submit'class='btn-cart' name='supp' value='Supprimer'>";
+    include 'supp-card.php';
+    echo "<input type='submit'class='btn-cart' name='order' value='Commander'>";
     echo "</div>";
 
 
@@ -67,5 +67,18 @@
     <?php
         include 'footer.html';
     ?>
+
+    <script>
+        const checkboxAll = document.querySelector('.checkbox-all');
+        const checkboxes = document.querySelectorAll("input[type='checkbox'][name='sneaker']");
+
+        checkboxAll.addEventListener('change', (event) => {
+        const isChecked = event.target.checked;
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = isChecked;
+            });
+        });
+    </script>
 
 </body>
