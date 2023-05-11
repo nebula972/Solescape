@@ -35,7 +35,7 @@
     <div class="info-container">
         <!--bouton de deconnexion-->
         <a href="logout.php" class="btn_logout">Déconnexion</a>
-        <h4 class="info_perso">Mes informations personnelles : <?php echo $_SESSION['customer']['E_mail']; ?> </h4>
+        <h4 class="info_perso">Mes informations personnelles : <?php echo $_SESSION['customer']['E_mail']; ?></h4>
         <form class="modif_in" action="update_customer.php" method="POST">
             <label class="label_info" for="first_name">Prénom</label>
             <input class="info" type="text" id="First_Name" name="First_Name" require>

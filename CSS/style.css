@@ -413,6 +413,33 @@ a{
 
 /* Style du bouton tout selectionner */
 
+.empty-cart {
+  margin: 50px auto;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.empty-cart p {
+  margin-bottom: 20px;
+}
+
+.empty-cart a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.empty-cart a:hover {
+  background-color: var(--color-tertiary);
+}
+
+
+
 input[type="checkbox"].checkbox-all {
   width: 18px;
   height: 18px;

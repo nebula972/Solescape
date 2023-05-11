@@ -6,6 +6,8 @@
         exit;
     }
 ?>
+<!--ajax-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,52 +25,81 @@
         include 'header.html';
     ?>
 
-<?php
-    // Récupération de l'id du customer depuis la session
-    $customerId = $_SESSION['customer']['Id'];
-    var_dump($_SESSION['customer']);
+    <?php
+        // Récupération de l'id du customer depuis la session
+        $customerId = $_SESSION['customer']['Id'];
 
-    // Requête pour récupérer les sneakers dans le panier
-    $sql = "SELECT sneakers.* FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':customerId', $customerId);
-    $stmt->execute();
-    $sneakersInCart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Requête pour récupérer les sneakers dans le panier
+        $sql = "SELECT sneakers.*, cart.id as cart_id FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':customerId', $customerId);
+        $stmt->execute();
+        $sneakersInCart = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // bouton tout selectionner
-    echo "<div class='btn-allselect'>";
-    echo "<input type='checkbox' name='allselect' class='checkbox-all' value=''> Tout sélectionner";
-    echo "</div>";
-    
-    // Affichage des résultats dans une grid
-    echo "<div class='gallery'>";
-    foreach ($sneakersInCart as $row) {
-        echo "<a href='maquette_snk.php?id=" . $row['id'] . "'>";
-        echo "<div class='item'>";
-        echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
-        echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
-        echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
-        echo "<input type='submit' class='btn-suppr' name='suppr' value='Supprimer'>";
-        echo "</div>";
-        echo "</a>";
-    }
-    echo "</div>";
-    echo " <div class='container-btn-cart'>";
-    echo "<input type='submit'class='btn-cart' name='supp' value='Supprimer'>";
-    include 'supp-card.php';
-    echo "<input type='submit'class='btn-cart' name='order' value='Commander'>";
-    echo "</div>";
-
-
-
-    // Fermeture de la connexion à la base de données
-    $db = null;
+        if (empty($sneakersInCart)) {
+            echo '<div class="empty-cart">
+                    <p>Votre panier est vide</p>
+                    <a href="Index.php">Retourner à la boutique</a>
+                </div>';
+        } else {
+            // bouton tout selectionner
+            echo "<div class='btn-allselect'>";
+            echo "<input type='checkbox' name='allselect' class='checkbox-all' value=''> Tout sélectionner";
+            echo "</div>";
+            
+            // Affichage des résultats dans une grid
+            echo "<div class='gallery'>";
+            foreach ($sneakersInCart as $row) {
+                echo "<a id='sneak-".$row['cart_id']."' href='maquette_snk.php?id=" . $row['id'] . "'>";
+                echo "<div class='item'>";
+                echo "<input type='checkbox' name='sneaker' data-cartid='" . $row['cart_id'] . "'>";
+                echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
+                echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
+                echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
+                echo "</div>";
+                echo "</a>";
+            }
+            echo "</div>";
+            echo " <div class='container-btn-cart'>";
+            echo "<button type='button' class='btn-cart' id='btn-delete'>Supprimer</button>";
+            echo "<input type='submit'class='btn-cart' name='order' value='Commander'>";
+            echo "</div>";
+        }
+        // Fermeture de la connexion à la base de données
+        $db = null;
     ?>
+     <!--Suppression des sneakers du panier-->
+    <script>
+        document.getElementById('btn-delete').addEventListener('click', function() {
+            var cartIds = [];
+            var checkboxes = document.getElementsByName('sneaker');
+            for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                cartIds.push(checkboxes[i].getAttribute('data-cartid'));
+            }
+            }
+            // Envoi du tableau de cart_id vers la page de traitement des suppressions en utilisant Ajax
+            $.ajax({
+            url: 'supp-cart.php',
+            type: 'POST',
+            data: {
+                cartIds: cartIds
+            },
+            success: function(data) {
+                // Suppression des sneakers du panier
+                data.cartIds.forEach(function(cartId) {
+                document.getElementById('sneak-' + cartId).remove();
+                });
+                //window.location.reload();
+            }
+            });
+            console.log(cartIds);
+        });
+    </script>
 
     <?php
         include 'footer.html';
     ?>
-
     <script>
         const checkboxAll = document.querySelector('.checkbox-all');
         const checkboxes = document.querySelectorAll("input[type='checkbox'][name='sneaker']");
