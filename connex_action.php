@@ -5,7 +5,7 @@ session_destroy();
     //si le formulaire est envoyé
     if(isset($_POST['email']) && isset($_POST['password'])){
         //récupère les données du formulaire
-        $email = ($_POST['email']);
+        $email = htmlspecialchars($_POST['email']);
         
         //hash le mot de passe en sha256
         $password = hash('sha256',$_POST['password']);

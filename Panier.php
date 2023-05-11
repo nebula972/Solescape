@@ -25,7 +25,8 @@
 
 <?php
     // Récupération de l'id du customer depuis la session
-    $customerId = $_SESSION['customer']['Id'];   
+    $customerId = $_SESSION['customer']['Id'];
+    var_dump($_SESSION['customer']);
 
     // Requête pour récupérer les sneakers dans le panier
     $sql = "SELECT sneakers.* FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId";

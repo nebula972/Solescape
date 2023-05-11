@@ -6,6 +6,7 @@
     if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])){
         //récupère les données du formulaire
         $email = htmlspecialchars($_POST['email']);
+        
         //hash le mot de passe en sha256
         $password = hash('sha256', $_POST['password']);
         $password2 = hash('sha256', $_POST['password2']);
@@ -30,11 +31,23 @@
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $password);
                 $stmt->execute();
+
+                //requête pour récupérer les données de la table customer
+                $sql = "SELECT * FROM customer WHERE E_mail = :email";
+
+                //exécute la requête pour récupérer les données de l'utilisateur
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+                $customer = $stmt->fetch();
+
                 //crée la session
                 session_start();
+
                 //enregistre les données de l'utilisateur dans la session
                 $_SESSION['customer'] = $customer;
-                //redirige vers la page d'accueil après 3 secondes
+
+                //redirige vers la page d'accueil
                 header("Location: index.php");
             }
         }else{
