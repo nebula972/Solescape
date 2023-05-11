@@ -42,6 +42,7 @@
                     <a href="Index.php">Retourner à la boutique</a>
                 </div>';
         } else {
+            echo " <div id='main'>";
             // bouton tout selectionner
             echo "<div class='btn-allselect'>";
             echo "<input type='checkbox' name='allselect' class='checkbox-all' value=''> Tout sélectionner";
@@ -63,6 +64,7 @@
             echo " <div class='container-btn-cart'>";
             echo "<button type='button' class='btn-cart' id='btn-delete'>Supprimer</button>";
             echo "<input type='submit'class='btn-cart' name='order' value='Commander'>";
+            echo "</div>";
             echo "</div>";
         }
         // Fermeture de la connexion à la base de données
@@ -90,7 +92,10 @@
                 data.cartIds.forEach(function(cartId) {
                 document.getElementById('sneak-' + cartId).remove();
                 });
-                //window.location.reload();
+                let items = document.getElementsByName('sneaker')
+                if (items.length == 0) {
+                    document.getElementById('main').innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p><a href="Index.php">Retourner à la boutique</a></div>';
+                }
             }
             });
             console.log(cartIds);
