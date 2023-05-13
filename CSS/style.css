@@ -36,26 +36,37 @@ p{
 /* Header styles */
 /* Header container */
 header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 	background-color: var(--color-secondary);
 	box-shadow: var(--box-shadow-base);
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 9999;
-	margin-bottom: 20px;
+	padding: 10px 20px;
+  margin-bottom: 50px;
 }
 
 .header-container {
 	display: flex;
+  flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	padding: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /*custom le logo*/
+.header-logo {
+  flex-basis: 200px;
+  margin-right: 20px;
+}
+
 .logo{
-	text-decoration: none;
+	font-size: 28px;
+  font-weight: 700;
 	color: var(--color-primary);
+  text-decoration: none;
 }
 
 /* Page header.html */
@@ -85,14 +96,24 @@ header {
 }
 
 /* Header icons */
+.header-icons {
+  display: flex;
+}
+
 .header-icons ul{
 	display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /*retire le soulignage*/
 .header-icons ul li {
 	margin-right: 20px;
-	list-style: none;
+}
+
+li:last-child {
+  margin-right: 0;
 }
 
 /* grossit les icons profil, panier, fav*/ 
@@ -110,25 +131,17 @@ header {
 
 /* aligne les icones de la barre de navigation */
 .Search{
-	display: flex;
-	align-items: center;
+  flex: 1;
+  margin-right: 20px;
 }
 
 /* augmente la largeur et la longeur de la barre recherche */
 .Search input{
-	width:400px;
-	height: 50px;
+	width:100%;
+  font-size: 16px;
 	border-radius: 20px;
 	padding: 10px;
-	border: 2px solid var(--color-tertiary);
-}
-
-/* positionne la loupe dans la barre de recherche */
-.Search svg{
-  position: absolute;
-	margin-left: 340px;
-	width: 30px;
-	height: 30px;
+  border: 2px solid var(--color-tertiary);
 }
 
 /* augmente la tailler du placeholder du boutton rechercher */
@@ -171,6 +184,7 @@ margin: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   grid-gap: 15px;
   justify-content: center;
+  margin-bottom: 5%;
 }
 
 a{
@@ -186,10 +200,11 @@ a{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 }
 
 .snk-minia{
-  width: 100%;
+  width: 70%;
   object-fit: contain;
   object-position: top;
   margin-bottom: 10px;
@@ -332,6 +347,167 @@ a{
 
 /* Fin Page inscription.php*/
 
+/*Page Maquette.php*/
+
+/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+/* Styles pour rendre la page responsive */
+.snk-choice{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* style pour l'image de la sneaker */
+/* Style pour le conteneur principal */
+.snk-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour l'image principale */
+#snk-big {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+/* Style pour le nom et le prix de la sneaker */
+.snk-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#snk-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#snk-price {
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Style pour la liste déroulante des pointures */
+label[for="size"] {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#size {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+#snk-desc {
+  font-size: 16px;
+  text-align: justify;
+}
+
+/* Style pour les images supplémentaires de la sneaker */
+.snk-choice img:not(#snk-big) {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  margin: 20px
+}
+
+@media only screen and (min-width: 810px) {
+  /* styles pour les écrans de taille moyenne */
+  .snk-choice {
+      flex-wrap: nowrap;
+      text-align: left;
+  }
+
+  .snk-choice img {
+      max-width: 50%;
+      margin: 10px;
+  }
+
+  .snk-choice .snk-info {
+      margin: 10px;
+      width: 50%;
+  }
+
+  .snk-choice label {
+      width: auto;
+      margin-bottom: 5px;
+      display: inline-block;
+  }
+
+  .snk-choice select {
+      width: auto;
+      margin-bottom: 0;
+  }
+
+  .snk-choice .snk-snk-but {
+      width: auto;
+  }
+}
+/*aaaaaaaaaaaaaaaaaa*/
+
+/*Bouton ajouter au panier*/
+#add-to-cart {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+#add-to-cart:hover {
+  background-color: #555;
+}
+
+/*Scroll taille*/
+select{
+  padding: 5px; /* ajustez la marge intérieure selon vos besoins */
+  border: 1px solid var(--color-primary); /* juste pour délimiter la zone du menu déroulant */
+  border-radius: 3px; /* pour arrondir les coins */
+  font-size: 16px; /* ajustez la taille de police selon vos besoins */
+  width: 100%; /* ajustez la largeur selon vos besoins */
+  max-width: 50px; /* ajustez la largeur maximale selon vos besoins */
+  background-color: #fff; /* couleur de fond */
+  color: #333; /* couleur du texte */
+}
+
+select option {
+  background-color: #fff; /* couleur de fond */
+  color: #333; /* couleur du texte */
+}
+
+
+/*Fin Page Maquette.php*/
 /* Page Compte.php */
 /* Style pour le conteneur principal */
 .info-container {

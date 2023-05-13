@@ -50,7 +50,7 @@ session_start();
         <!-- affiche les info de la sneaker -->
         <?php 
             echo '<div class="snk-choice">';
-            echo '<img id="snk-big" src="' . $sneaker['Picture'] . '" alt="' . $sneaker['Model'] . '">';
+            echo '<img class="img_maq" id="snk-big" src="' . $sneaker['Picture'] . '" alt="' . $sneaker['Model'] . '">';
             echo '<div class="snk-info">';
             echo '<h3 id="snk-name">' . $sneaker['Brand'] . ' ' . $sneaker['Model'] . '</h3>';
             echo '<p id="snk-price">' . $sneaker['Price'] . ' €</p>';
@@ -81,7 +81,7 @@ session_start();
             $files = scandir($dir);
             foreach ($files as $file) {
                 if ($file != '.' && $file != '..') {
-                    echo '<img src="' . $dir . '/' . $file . '" alt="' . $sneaker['Model'] . '">';
+                    echo '<img class="img_maq" src="' . $dir . '/' . $file . '" alt="' . $sneaker['Model'] . '">';
                 }
             }
             echo '</div>';
