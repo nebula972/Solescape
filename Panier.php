@@ -63,7 +63,7 @@
             echo "</div>";
             echo " <div class='container-btn-cart'>";
             echo "<button type='button' class='btn-cart' id='btn-delete'>Supprimer</button>";
-            echo "<input type='submit'class='btn-cart' name='order' value='Commander'>";
+            echo "<a href='order.php'><input type='submit'class='btn-cart' name='order' value='Commander'><a/>";
             echo "</div>";
             echo "</div>";
         }

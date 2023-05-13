@@ -664,6 +664,15 @@ input[type="checkbox"].checkbox-all:checked::before {
 
 /* Fin Page Panier.php */
 
+/* Page Ordered */
+.ordered{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Page Footer.html */
 .site-footer
 {
