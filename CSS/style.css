@@ -159,8 +159,8 @@ li:last-child {
 /*Banner*/
 .banner-container{
 display: flex;
-height: 45h;
-width: 75vw;
+height: 30%;
+width: 70%;
 margin: 0 auto;
 }
 
@@ -193,7 +193,7 @@ a{
 
 /*Parametre case dans la grille*/
 .item{
-  height: 300px;
+  height: 100%;
   color : #f1f1f1;
   padding : 20px;
   border : 1px solid var(--color-primary);
@@ -204,7 +204,7 @@ a{
 }
 
 .snk-minia{
-  width: 70%;
+  width: 100%;
   object-fit: contain;
   object-position: top;
   margin-bottom: 10px;
