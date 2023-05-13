@@ -8,14 +8,16 @@
         header("Location: connexion.php");
         exit();
     }
-    $customer_id = $_SESSION['customer'];
+    $customer_id = $_SESSION['customer']['Id'];
     
-    // Requête pour récupérer les informations du client
-    $sql = "SELECT * FROM customer WHERE id = :customer";
+    // Requête pour récupérer les données du client connecté
+    $sql = "SELECT * FROM customer WHERE Id = :id";
+
+    // exécute la requête pour récupérer les données du client
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':customer', $customer_id, PDO::PARAM_INT);
+    $stmt->bindParam(':id', $customer_id);
     $stmt->execute();
-    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer = $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,23 +40,23 @@
         <h4 class="info_perso">Mes informations personnelles : <?php echo $_SESSION['customer']['E_mail']; ?></h4>
         <form class="modif_in" action="update_customer.php" method="POST">
             <label class="label_info" for="first_name">Prénom</label>
-            <input class="info" type="text" id="First_Name" name="First_Name" require>
+            <input class="info" type="text" value="<?php echo $_SESSION['customer']['First_Name']; ?>" placeholder="Entrez votre prénom" id="First_Name" name="First_Name" require>
             <label class="label_info" for="last_name">Nom</label>
-            <input class="info" type="text" id="Last_Name" name="Last_Name"require>
+            <input class="info" type="text"value="<?php echo $_SESSION['customer']['Last_Name']; ?>" placeholder="Entrez votre nom" id="Last_Name" name="Last_Name"require>
             <label class="label_info" for="email">E-mail</label>
-            <input class="info" type="email" id="email" name="E_mail" require>
+            <input class="info" type="email"value="<?php echo $_SESSION['customer']['E_mail']; ?>" id="email" name="E_mail" require>
             <label class="label_info" for="password">Mot de passe</label>
-            <input class="info" type="password" id="Pwd" name="Pwd" minlength="8" required>
+            <input class="info" type="password" placeholder="Modifier votre mot de passe" id="Pwd" name="Pwd" minlength="8" required>
             <label class="label_info" for="street">Rue</label>
-            <input class="info" type="text" id="Street" name="Street" require>
+            <input class="info" type="text"value="<?php echo $_SESSION['customer']['Street']; ?>" placeholder="Entrez votre rue" id="Street" name="Street" require>
             <label class="label_info" for="city">Ville</label>
-            <input class="info" type="text" id="City" name="City" require>
+            <input class="info" type="text"value="<?php echo $_SESSION['customer']['City']; ?>" placeholder="Entrez votre ville" id="City" name="City" require>
             <label class="label_info" for="country">Pays</label>
-            <input class="info" type="text" id="State" name="State" require>
+            <input class="info" type="text"value="<?php echo $_SESSION['customer']['State']; ?>" placeholder="Entrez votre pays" id="State" name="State" require>
             <label class="label_info" for="postal_code">Code Postal</label>
-            <input class="info" type="text" id="Postal_Code" name="Postal_Code" require>
+            <input class="info" type="text"value="<?php echo $_SESSION['customer']['Postal_Code']; ?>" placeholder="Entrez votre code postal" id="Postal_Code" name="Postal_Code" require>
             <label class="label_info" for="phone_number">Numéro de téléphone</label>
-            <input class="info" type="tel" id="Phone" name="Phone" require>
+            <input class="info" type="tel"value="<?php echo $_SESSION['customer']['Phone']; ?>" placeholder="Entrez votre numéro de téléphone" id="Phone" name="Phone" require>
             <a href="Compte.php"><input class="sub_info" type="submit" value="Mettre à jour mes informations"></a>
         </form>
     </div>

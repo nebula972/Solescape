@@ -12,15 +12,16 @@
     $first_name = $_POST['First_Name'];
     $last_name = $_POST['Last_Name'];
     $email = $_POST['E_mail'];
-    $password = sha256($_POST['Pwd']);
+    $password = hash('sha256', $_POST['Pwd']);
     $street = $_POST['Street'];
     $city = $_POST['City'];
     $state = $_POST['State'];
     $postal_code = $_POST['Postal_Code'];
     $phone_number = $_POST['Phone'];
+    var_dump($_SESSION['customer']['Id']);
     
     // Mise à jour des informations du client dans la base de données
-    $sql = "UPDATE customer SET First_Name = ?, Last_Name = ?, E_mail = ?, Pwd = ?, Street = ?, City = ?, State = ?, Postal_Code = ?, Phone = ? WHERE id = ?";
+    $sql = "UPDATE Customer SET First_Name = ?, Last_Name = ?, E_mail = ?, Pwd = ?, Street = ?, City = ?, State = ?, Postal_Code = ?, Phone = ? WHERE Id = ?;";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(1, $first_name, PDO::PARAM_STR);
     $stmt->bindParam(2, $last_name, PDO::PARAM_STR);
