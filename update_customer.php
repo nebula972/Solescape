@@ -35,7 +35,18 @@
     $stmt->bindParam(10, $_SESSION['customer']['Id'], PDO::PARAM_INT);
     $stmt->execute();
 
-   //redirection en javascript vers Compte.php
-    echo "<script type='text/javascript'>document.location.replace('Compte.php');</script>";
+    // Mise à jour des informations du client dans la session
+    $_SESSION['customer']['First_Name'] = $first_name;
+    $_SESSION['customer']['Last_Name'] = $last_name;
+    $_SESSION['customer']['E_mail'] = $email;
+    $_SESSION['customer']['Pwd'] = $password;
+    $_SESSION['customer']['Street'] = $street;
+    $_SESSION['customer']['City'] = $city;
+    $_SESSION['customer']['State'] = $state;
+    $_SESSION['customer']['Postal_Code'] = $postal_code;
+    $_SESSION['customer']['Phone'] = $phone_number;
+
+   //redirection vers Compte.php
+    header("Location: compte.php");
     die();
 ?>
