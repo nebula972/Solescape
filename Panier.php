@@ -61,6 +61,13 @@
                 echo "</a>";
             }
             echo "</div>";
+
+            // Affichage du prix total en javascript
+            echo "<div class='total-price'>";
+            echo "<p>Total : <span id='total-price'></span>€</p>";
+            echo "</div>";
+
+            // Bouton pour supprimer les sneakers du panier
             echo " <div class='container-btn-cart'>";
             echo "<button type='button' class='btn-cart' id='btn-delete'>Supprimer</button>";
             echo "<a href='order.php'><input type='submit'class='btn-cart' name='order' value='Commander'><a/>";
@@ -71,35 +78,66 @@
         $db = null;
     ?>
      <!--Suppression des sneakers du panier-->
-    <script>
+     <script>
         document.getElementById('btn-delete').addEventListener('click', function() {
             var cartIds = [];
             var checkboxes = document.getElementsByName('sneaker');
             for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                cartIds.push(checkboxes[i].getAttribute('data-cartid'));
-            }
-            }
-            // Envoi du tableau de cart_id vers la page de traitement des suppressions en utilisant Ajax
-            $.ajax({
-            url: 'supp-cart.php',
-            type: 'POST',
-            data: {
-                cartIds: cartIds
-            },
-            success: function(data) {
-                // Suppression des sneakers du panier
-                data.cartIds.forEach(function(cartId) {
-                document.getElementById('sneak-' + cartId).remove();
-                });
-                let items = document.getElementsByName('sneaker')
-                if (items.length == 0) {
-                    document.getElementById('main').innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p><a href="Index.php">Retourner à la boutique</a></div>';
+                if (checkboxes[i].checked) {
+                    cartIds.push(checkboxes[i].getAttribute('data-cartid'));
                 }
             }
+
+            // Si aucun article n'est sélectionné, afficher une alerte
+            if (cartIds.length == 0) {
+                alert('Veuillez sélectionner au moins un article à supprimer.');
+                return;
+            }
+
+            // Envoi du tableau de cart_id vers la page de traitement des suppressions en utilisant Ajax
+            $.ajax({
+                url: 'supp-cart.php',
+                type: 'POST',
+                data: {
+                    cartIds: cartIds
+                },
+                success: function(data) {
+                    // Suppression des sneakers du panier
+                    data.cartIds.forEach(function(cartId) {
+                        document.getElementById('sneak-' + cartId).remove();
+                    });
+
+                    // Calcul du prix total en temps réel
+                    const sneakers = document.querySelectorAll('.snk-price');
+                    const totalPrice = document.getElementById('total-price');
+
+                    let total = 0;
+                    sneakers.forEach((sneaker) => {
+                        const price = sneaker.innerHTML;
+                        total += parseInt(price);
+                    });
+                    totalPrice.innerHTML = total;
+
+                    let items = document.getElementsByName('sneaker')
+                    if (items.length == 0) {
+                        document.getElementById('main').innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p><a href="Index.php">Retourner à la boutique</a></div>';
+                    }
+                }
             });
-            console.log(cartIds);
         });
+    </script>
+    <!--Calcul du prix total en temps reel-->
+
+    <script>
+        const sneakers = document.querySelectorAll('.snk-price');
+        const totalPrice = document.getElementById('total-price');
+
+        let total = 0;
+        sneakers.forEach((sneaker) => {
+            const price = sneaker.innerHTML;
+            total += parseInt(price);
+        });
+        totalPrice.innerHTML = total;
     </script>
 
     <?php

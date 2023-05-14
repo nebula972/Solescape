@@ -636,6 +636,22 @@ input[type="checkbox"].checkbox-all:checked::before {
   font-size: 16px;
 }
 
+/*Prix total du panier*/
+.cart-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.total-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
 /* Style du bouton supprimer et commander  */
 
 .container-btn-cart{
