@@ -24,13 +24,16 @@
     <?php
         include 'header.html';
     ?>
+    <div class="info-container">
+    <h2>Mon panier </h2>
+    </div>
 
     <?php
         // Récupération de l'id du customer depuis la session
         $customerId = $_SESSION['customer']['Id'];
 
-        // Requête pour récupérer les sneakers dans le panier
-        $sql = "SELECT sneakers.*, cart.id as cart_id FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId";
+        // Requête pour récupérer les sneakers et la taille dans le panier
+        $sql = "SELECT sneakers.*, cart.id as cart_id, cart.Size FROM cart JOIN sneakers ON cart.id_Sneakers = sneakers.id WHERE cart.Id_Customer = :customerId"; 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':customerId', $customerId);
         $stmt->execute();
@@ -57,6 +60,8 @@
                 echo "<img class='snk-minia' src='" . $row['Picture'] . "' alt='photo_sneakers'>";
                 echo "<p class='snk-name'>" . $row['Brand'] . " " . $row['Model'] . "</p>";
                 echo "<p class='snk-price'>" . $row['Price'] . "€</p>";
+                //aficher la taille
+                echo "<p class='snk-size'>Taille : " . $row['Size'] . " EU</p>";
                 echo "</div>";
                 echo "</a>";
             }
