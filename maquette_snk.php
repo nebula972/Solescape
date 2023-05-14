@@ -86,30 +86,37 @@ session_start();
             }
             echo '</div>';
         ?>
+       <!--si le client n'est pas connecté, affiche un message d'erreur-->
        <script>
-           //async add cart 
-           $(document).ready(function(){
-               $('#add-to-cart').click(function(){
-                   var id = $(this).data("id");
-                   var size = $('#size').val();
-                   if(size == ''){
-                       alert("Veuillez sélectionner une taille.");
-                       return false;
-                   }else{
-                       $.ajax({
-                           url:"add_cart.php",
-                           method:"POST",
-                           data:{id:id, size:size},
-                            success:function(data){
-                                 alert("Le produit a été ajouté au panier.");
-                                 location.reload();
-                           }
-                       });
-                   }
-               });
-           });
-
-       </script>
+            //async add cart 
+            $(document).ready(function(){
+                $('#add-to-cart').click(function(){
+                    var id = $(this).data("id");
+                    var size = $('#size').val();
+                    <?php if (!isset($_SESSION['customer'])) {?>
+                        alert("Vous devez être connecté pour ajouter un article au panier");
+                    <?php } else {?>
+                        if(size == ''){
+                            alert("Veuillez sélectionner une taille.");
+                            return false;
+                        }else{
+                            $.ajax({
+                                url:"add_cart.php",
+                                method:"POST",
+                                data:{id:id, size:size},
+                                success:function(data){
+                                    alert("Le produit a été ajouté au panier.");
+                                    location.reload();
+                                },
+                                error:function(){
+                                    alert("Une erreur s'est produite. Veuillez réessayer.");
+                                }
+                            });
+                        }
+                    <?php } ?>
+                });
+            });           
+        </script>          
     </section>
 
     <!-- fin contenu de la page -->
