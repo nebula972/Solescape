@@ -28,7 +28,7 @@
 
     <?php
         // Requête pour récupérer les données de la table Sneakers
-        $sql = "SELECT Model, Brand, Price, Picture, id FROM Sneakers";
+        $sql = "SELECT Model, Brand, Price, Picture, id FROM Sneakers Where Solde = 'non'";
 
         // Exécution de la requête
         $stmt = $db->prepare($sql);

@@ -33,6 +33,14 @@
     <?php
         include 'Header.html';
     ?>
+    <?php
+    
+    // Vérification que l'utilisateur est connecté en tant qu'admin
+    if (isset($_SESSION['customer']['E_mail']) && $_SESSION['customer']['E_mail'] == 'admin@solescape.com') {
+        // Afficher le bouton réservé aux admins qui mene vers la page admin.php
+        echo "<a href='admin.php' class='btn_admin'>Admin</a>";
+    }
+?>
     
     <div class="info-container">
         <!--bouton de deconnexion-->
