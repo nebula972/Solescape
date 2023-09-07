@@ -42,7 +42,7 @@
         if (empty($sneakersInCart)) {
             echo '<div class="empty-cart">
                     <p>Votre panier est vide</p>
-                    <a href="Index.php">Retourner à la boutique</a>
+                    <a href="index.php">Retourner à la boutique</a>
                 </div>';
         } else {
             echo " <div id='main'>";
@@ -125,7 +125,7 @@
 
                     let items = document.getElementsByName('sneaker')
                     if (items.length == 0) {
-                        document.getElementById('main').innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p><a href="Index.php">Retourner à la boutique</a></div>';
+                        document.getElementById('main').innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p><a href="index.php">Retourner à la boutique</a></div>';
                     }
                 }
             });
