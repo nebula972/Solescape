@@ -20,6 +20,12 @@
     ?>
     <section class="banner-container"><img class="banner" src="assets/image_st/Banner_Solescape.png" alt=""></section>
 
+    <div id=btn-solde-container>
+        <a href="index.php"><button class="btn-solde">Toutes les Sneakers</button></a>
+        <a href="solde.php"><button class="btn-solde">Solde</button></a>
+        <a href="incon.php"><button class="btn-solde">Incontournable</button></a>
+    </div>
+
     <?php
         // Requête pour récupérer les données de la table Sneakers
         $sql = "SELECT Model, Brand, Price, Picture, id, Prix_solde FROM Sneakers WHERE Solde = 'soldé'";

@@ -97,6 +97,8 @@ session_start();
                     var size = $('#size').val();
                     <?php if (!isset($_SESSION['customer'])) {?>
                         alert("Vous devez être connecté pour ajouter un article au panier");
+                        window.location.href = "connexion.php";
+
                     <?php } else {?>
                         if(size == ''){
                             alert("Veuillez sélectionner une taille.");

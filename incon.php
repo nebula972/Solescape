@@ -20,7 +20,7 @@
     ?>
     <section class="banner-container"><img class="banner" src="assets/image_st/Banner_Solescape.png" alt=""></section>
 
-    <div id=btn-solde>
+    <div id=btn-solde-container>
         <a href="index.php"><button class="btn-solde">Toutes les Sneakers</button></a>
         <a href="solde.php"><button class="btn-solde">Solde</button></a>
         <a href="incon.php"><button class="btn-solde">Incontournable</button></a>
